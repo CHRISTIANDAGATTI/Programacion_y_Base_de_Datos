@@ -81,14 +81,4 @@ class Scooter:
                 f"Batería: {self.__bateria}, Estado: {estado}")
 
 
-# Ejemplo de uso
-scooter = Scooter("Rojo", "Honda", "Activa", 60)
 
-try:
-    print(scooter.encender())
-    print(scooter.acelerar(20))
-    print(scooter.frenar(10))
-    print(scooter)  # Uso del método __str__
-    print(scooter.apagar())
-except ValueError as e:
-    print(e)
