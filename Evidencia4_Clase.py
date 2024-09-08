@@ -53,22 +53,19 @@ class Scooter:
                     self.__velocidad_actual = self.velocidad_maxima
                 else:
                     self.__velocidad_actual = nueva_velocidad
-                self.__bateria -= 1  # Asumiendo que acelerar consume 1 unidad de batería
+                self.__bateria = max(self.__bateria - 1, 0)  # Asegurar que la batería no sea negativa
                 return (f"Aceleramos: {incremento} km/h --- Velocidad actual: {self.__velocidad_actual} km/h, "
                         f"Nivel de batería: {self.__bateria}")
             else:
                 raise ValueError("No se puede acelerar. La batería está vacía.")
         else:
-            raise ValueError("La scooter está apagada. Primero enciéndela.")
+            raise ValueError("La scooter está apagada. ")
+
 
     def frenar(self, decremento):
         if self.__encendida:
             nueva_velocidad = self.__velocidad_actual - decremento
-            if nueva_velocidad < 0:
-                self.__velocidad_actual = 0
-            else:
-                self.__velocidad_actual = nueva_velocidad
-            self.__bateria -= 1  # Asumiendo que frenar consume 1 unidad de batería
+            self.__velocidad_actual = max(nueva_velocidad, 0)  # Evitar que la velocidad sea negativa
             return (f"Desaceleramos: {decremento} km/h --- Velocidad actual: {self.__velocidad_actual} km/h, "
                     f"Nivel de batería: {self.__bateria}")
         else:
